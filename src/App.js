@@ -12,7 +12,9 @@ import { Route } from 'react-router-dom';
 import {MemberList,MemberCreate,MemberEdit,MemberIcon} from './members';
 
 import {GroupList, GroupEdit, GroupIcon, GroupCreate} from './groups';
-
+import {CustomerList,CustomerIcon} from "./customers";
+import {PersonalList,PersonalIcon,PersonalShow,PersonalEdit} from "./personals";
+import {CompanyList, CompanyIcon, CompanyShow, CompanysEdit} from "./companys";
 import dataProviderFactory from './dataProvider';
 import fakeServerFactory from './fakeServer';
 
@@ -70,6 +72,36 @@ class App extends Component {
                     edit={MemberEdit}
                     icon={MemberIcon}
                 />
+
+                {/*客户列表*/}
+                <Resource
+                    name="customers"
+                    list = {CustomerList}
+                    // show = {CustomerShow}
+                    // create = {CustomerCreate}
+                    // edit = {CustomerEdit}
+                    icon ={CustomerIcon}
+
+                />
+
+                <Resource
+                    name="personals"
+                    list = {PersonalList}
+                    show = {PersonalShow}
+                    // create = {CustomerCreate}
+                    edit = {PersonalEdit}
+                    icon ={PersonalIcon}
+                />
+                <Resource
+                    name="companys"
+                    list = {CompanyList}
+                    show = {CompanyShow}
+                    // create = {CustomerCreate}
+                    edit = {CompanysEdit}
+                    icon ={CompanyIcon}
+
+                />
+
  
             </Admin>
         );

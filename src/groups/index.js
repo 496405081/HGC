@@ -6,18 +6,18 @@ import {
     Create,
     EditButton,
     List,
-      Filter,
+    Filter,
     NumberField,
     ReferenceManyField,
     SimpleForm,
     TextField,
     TextInput,
     DateField,
-        CardActions,
-        TabbedForm,
-        FormTab,
-        ReferenceInput,
-SelectInput,
+    CardActions,
+    TabbedForm,
+    FormTab,
+    ReferenceInput,
+    SelectInput,
     ListButton,
     ShowButton,
     DeleteButton,
@@ -25,7 +25,8 @@ SelectInput,
     filters,
     CreateButton,
     customAction,
-    BooleanField 
+    BooleanField,
+    AutocompleteInput, required
 } from 'react-admin';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Icon from '@material-ui/icons/Bookmark';
@@ -105,13 +106,20 @@ const listStyles = {
 
 
 //========================================组织列表过滤器=============================
-const GroupFilter = props => (
-    <Filter {...props} >
-        <TextInput label="名称搜索" source="name" alwaysOn />
+const GroupFilter = ((props) => (
+    <Filter {...props}>
+
+
+        <ReferenceInput label="名称" source="name" reference="groups" alwaysOn>
+            <AutocompleteInput  label="名称搜索" optionText="name" optionValue="name" alwaysOn />
+        </ReferenceInput>
+
+        {/*<TextInput label="名称搜索" source="q" alwaysOn/>*/}
+
         <TextInput label="编码搜索" source="code" alwaysOn />
-     
+
     </Filter>
-);
+));
 //=====================成员查询过滤器=========================================
 const MemberFilter = props => (
     <Filter {...props} >
@@ -170,9 +178,9 @@ export const GroupCreate = withStyles(editStyles)(({ classes, ...props }) => (
         <SimpleForm redirect="/groups" redirect={false}>
             <FormTab label="组织创建">
                 <TextInput
-                    source="name" label="组织名称"/>
+                    source="name" label="组织名称"  validate={required()}/>
                 <TextInput
-                    source="code" label="组织编码"/>
+                    source="code" label="组织编码"   validate={required()}/>
  
             </FormTab>
       </SimpleForm>

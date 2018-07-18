@@ -28,6 +28,8 @@ class ResetViewsAction extends Component {
                 content="切换用户状态为?"
                 onConfirm={this.handleConfirm}
                 onClose={this.handleDialogClose}
+                confirm="启用"
+                cancel="停用"
             />
         );
     }
